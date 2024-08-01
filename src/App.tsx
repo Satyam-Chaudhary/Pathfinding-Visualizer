@@ -1,10 +1,15 @@
-export default function App() {
+import { PathFindingProvider } from "./context/PathFindingContext";
+
+const App = () => {  
   return (
-    <h1 className="text-3xl font-bold underline h-screen w-screen bg-blue-700">
-      Hello world!
-    </h1>
-  )
-}
+      <PathFindingProvider>
+      <>
+      </>
+      </PathFindingProvider>
+  );
+};
+
+export default App;
 
 //PathFinding COntext
 //Tile Context
