@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react";
 import { AlgorithmType, GridType, MazeType } from "../utils/types";
 import { createGrid } from "../utils/helpers";
 import { END_TILE_CONFIG, START_TILE_CONFIG } from "../utils/constants";
@@ -21,7 +21,7 @@ export const PathFindingContext = createContext<
 export const PathFindingProvider = ({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) => {
   const [algorithm, setAlgorithm] = useState<AlgorithmType>("DIJISTRA");
   const [maze, setMaze] = useState<MazeType>("NONE");

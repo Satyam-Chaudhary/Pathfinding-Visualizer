@@ -1,11 +1,16 @@
 import { PathFindingProvider } from "./context/PathFindingContext";
+import { SpeedProvider } from "./context/SpeedContext";
+import { TileProvider } from "./context/TileContext";
 
-const App = () => {  
+const App = () => {
   return (
-      <PathFindingProvider>
-      <>
-      </>
-      </PathFindingProvider>
+    <PathFindingProvider>
+      <TileProvider>
+        <SpeedProvider>
+          <></>
+        </SpeedProvider>
+      </TileProvider>
+    </PathFindingProvider>
   );
 };
 
