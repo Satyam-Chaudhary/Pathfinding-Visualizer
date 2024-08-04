@@ -2,6 +2,11 @@ export type AlgorithmType = 'DIJISTRA' | 'A_STAR' | 'BFS' | 'DFS'
 
 export type MazeType = 'NONE' | 'BINARY TREE' | 'RECURSIVE DIVISON'
 
+export interface MazeSelectType{
+    name: string;
+    value: MazeType;
+}
+
 export type TileType = {
     row: number;
     col: number;
@@ -10,6 +15,7 @@ export type TileType = {
     isWall: boolean;
     isPath: boolean;
     distance: number;
+    isTraversed: boolean;
     parent: TileType | null;
 }
 
