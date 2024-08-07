@@ -1,10 +1,28 @@
+import { useState } from "react";
 import { usePathFinding } from "../hooks/usePathFInding";
+import useTile from "../hooks/useTile";
 import { MAZES } from "../utils/constants";
-import PlayBtn from "./PlayBtn";
+import { resetGrid } from "../utils/resetGrid";
+import { MazeType } from "../utils/types";
 import Select from "./Select";
+import { runMazeAlgorithm } from "../utils/runMazeAlgorithm";
+import useSpeed from "../hooks/useSpeed";
 
 export default function Nav() {
-    const {maze} = usePathFinding();
+  const [isDisabled, setIsDisabled] = useState(false);
+  const { maze, setMaze, grid } = usePathFinding();
+  const { startTile, endTile } = useTile();
+  const { speed } = useSpeed();
+  const handleGenerateMaze = (maze: MazeType) => {
+    if (maze === "NONE") {
+      setMaze("NONE");
+      resetGrid({ grid, startTile, endTile });
+      return;
+    }
+    setMaze(maze);
+    setIsDisabled(true);
+    runMazeAlgorithm({ maze, grid, startTile, endTile, setIsDisabled, speed });
+  };
   return (
     <div className="flex items-center justify-center min-h-[4.5rem] border-b shadow-gray-600 sm:px-5 px-0 ">
       <div className="flex items-center lg:justify-between justify-center w-full sm:w-[52rem]">
@@ -12,17 +30,15 @@ export default function Nav() {
           Pathfinding Visualizer
         </h1>
         <div className="flex sm:items-end items-center justify-start sm:justify-between sm:flex-row flex-col sm:space-y-0 space-y-3 sm:py-0 py-4 sm:space-x-4">
-            <Select
+          <Select
             label="Maze"
             value={maze}
-            options = {MAZES}
+            options={MAZES}
             onChange={(e) => {
-                // handle generating maze
-            
+              handleGenerateMaze(e.target.value as MazeType);
             }}
-            isDisabled = {false}
-            />
-            
+            isDisabled={isDisabled}
+          />
         </div>
       </div>
     </div>

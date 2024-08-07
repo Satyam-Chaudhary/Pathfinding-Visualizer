@@ -21,8 +21,9 @@ export type TileType = {
 
 export type GridType = TileType[][]
 
-export enum SpeedType {
-    SLOW = 50,
-    MEDIUM = 25,
-    FAST = 10
-}
+export type  SpeedType = 2 | 1 | 0.5;
+
+export interface SpeedSelectType{
+    name: string;
+    value: SpeedType;
+};
